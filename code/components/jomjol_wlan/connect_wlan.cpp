@@ -650,8 +650,9 @@ esp_err_t wifi_init_sta(void)
 		LogFile.WriteToFile(ESP_LOG_ERROR, TAG, "esp_wifi_start: Error: "  + std::to_string(retval));
 		return retval;
 	}
-
-    if (!wlan_config.hostname.empty())
+   	esp_wifi_set_ps(WIFI_PS_NONE);   // WLAN-Stromsparmodus aus (Repeater-Kompatibilitaet)
+    
+	if (!wlan_config.hostname.empty())
     {
         retval = esp_netif_set_hostname(my_sta, wlan_config.hostname.c_str());
         if(retval != ESP_OK ) {
