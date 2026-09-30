@@ -2,6 +2,7 @@ name: Build and Pack
 
 on:
     push:
+    workflow_dispatch:
     pull_request:
     release:
         types: [released] # Only trigger on published releases (not drafts or pre-released)
